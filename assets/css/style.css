@@ -90,3 +90,7 @@ img {
     width: 50%;
     height: auto;
 }
+
+#press-start {
+    visibility: visible;
+}

@@ -1,6 +1,9 @@
 // Counters for wins and guesses
 var wins = 0;
 var guessesRemaining = 10;
+var won = false;
+
+// var startBox = document.getElementById("press-start");
 
 var audioElement = document.createElement("audio");
 audioElement.setAttribute("src", "assets/netflix-opening.wav");
@@ -150,10 +153,15 @@ function resetGame() {
     numberRemainingGuessesBox.textContent = guessesRemaining; //... print our reset guess count...
     lettersGuessedBox.textContent = ""; //... print our empty guesses array...
     winsBox.textContent = wins; //... print new win total
+
+    // startBox.setAttribute("visibility", "visible");
 }
 
 
 document.onkeyup = function (event) {
+
+    // startBox.setAttribute("visibility", "hidden");
+
     userInput = event.key;
     userInput = userInput.toUpperCase();
 
@@ -175,11 +183,16 @@ document.onkeyup = function (event) {
         resetGame(); //... reset the game
     }
 
+    if (won) {
+        won = false;
+        resetGame();
+    }
+
     if (!wordBox.textContent.includes("_")) { // If there are no more underscores...
         audioElement.play(); //... play Netflix chime...
         wins++; //... add a win to the counter...
-        // alert("You win!"); //... alert the user...
-        resetGame(); //... reset the game
+        won = true;
+        // resetGame(); //... reset the game
     }
 
 }
