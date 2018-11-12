@@ -62,7 +62,6 @@ var titles = [
     "Mindhunter",
     "Lady Dynamite",
     "Easy",
-    "A Series of Unfortunate Events",
     "Unbreakable Kimmy Schmidt",
     "American Vandal",
     "One Day at a Time",
@@ -102,7 +101,7 @@ function writeCurrentWord(word) {
     // Iterate through all the characters of the chosen string (except the last)
     for (var i = 0; i < word.length - 1; i++) {
         if (word.charAt(i).toUpperCase() === " ") { // If the character at this index of the string is a space...
-            currentWord += "  "; // ... add a space to the underscores string
+            currentWord += "\ \ "; // ... add a space to the underscores string
         }
         else if (!guesses.includes(word.charAt(i).toUpperCase())) { // If the character at the index hasn't aleady been guessed...
             currentWord += "_ "; // ... add an underscore to the underscores string
@@ -155,7 +154,6 @@ document.onkeyup = function (event) {
 
     if (alphabet.includes(userInput) && !guesses.includes(userInput)) { // If the input is a letter, and hasn't already been guessed
         guesses.push(userInput); // ... add the letter to our guesses array
-        console.log(guesses);
 
         if (computerPick.toUpperCase().includes(userInput)) { // If the input is in our string (correct guess)...
             writeCurrentWord(computerPick); // ... rewrite the underscores string with correct guess filled in
@@ -171,4 +169,5 @@ document.onkeyup = function (event) {
     if (guessesRemaining === 0) { // If we've run out of guesses...
         resetGame(); // ... reset the game
     }
+
 }

@@ -1,20 +1,92 @@
 body{
-    /* background-color: red;
-    color: white; */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: #b3121c;
+    color: white; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-h1 {
-    font-size: 3em;
-    padding: 2em;
+header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;
 }
 
-div {
-    font-size: 16px;
+header h1 {
+    font-size: 3em;
+    color: white;
+    padding: 1em;
+    letter-spacing: .2em;
+    position: relative;
+    bottom: 1.8em;
+    text-shadow:
+        .1em .1em 0 #000,
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+header p {
+    font-size: 1em;
+    letter-spacing: .1em;
+    position: relative;
+    bottom: 6em;
+    text-shadow:
+        .1em .1em 0 #000,
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000;
+
+}
+
+#word-box {
+    text-align: center;
+    width: 90%;
+    font-size: 2em;
+    letter-spacing: .5em;
+    position: relative;
+    bottom: 2em;
+    margin: 0 auto;
+    text-shadow:
+    .1em .1em 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 66.6%;
+    font-size: 1.2em;
     line-height: 24px;
-    padding: 2em;
-    border: 2px solid black;
+    text-align: center;
+    text-shadow:
+    .1em .1em 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.col {
+    width: 45%;
+
+}
+
+img {
+    width: 50%;
+    height: auto;
 }
