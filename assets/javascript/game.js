@@ -101,10 +101,10 @@ function writeCurrentWord(word) {
 
     // Iterate through all the characters of the chosen string (except the last)
     for (var i = 0; i < word.length - 1; i++) {
-        if (word.charAt(i) === " ") { // If the character at this index of the string is a space...
+        if (word.charAt(i).toUpperCase() === " ") { // If the character at this index of the string is a space...
             currentWord += "  "; // ... add a space to the underscores string
         }
-        else if (guesses.indexOf(word.charAt(i) === -1)) { // If the character at the index hasn't aleady been guessed...
+        else if (!guesses.includes(word.charAt(i).toUpperCase())) { // If the character at the index hasn't aleady been guessed...
             currentWord += "_ "; // ... add an underscore to the underscores string
         }
         else { // If the character isn't a space and *has* been guessed...
@@ -113,13 +113,12 @@ function writeCurrentWord(word) {
     }
 
     // Then we handle the final character of our string
-    if (guesses.indexOf(word.charAt(word.length - 1)) === -1) { // If the final character hasn't already been guessed...
+    if (!guesses.includes(word.charAt(word.length - 1).toUpperCase())) { // If the final character hasn't already been guessed...
         currentWord += "_"; // ... add an underscore to our underscores string (note no trailing space)
     }
     else { // If the final character *has* already been guessed
         currentWord += word.charAt(word.length - 1); // ... add the guessed character to our underscores string
     }
-    console.log(currentWord);
 
     // Print the underscores string to our word box on screen
     wordBox.textContent = currentWord;
@@ -130,10 +129,13 @@ writeCurrentWord(computerPick);
 function writeGuessedCharacters() {
     var guessedLettersString = "";
     for (var i = 0; i < guesses.length - 1; i++) {
-        guessedLettersString += guesses[i] + ", ";
+        if (!computerPick.toUpperCase().includes(guesses[i])) {
+            guessedLettersString += guesses[i] + ", ";
+        }
     }
-    guessedLettersString += guesses[guesses.length - 1];
-
+    if (!computerPick.toUpperCase().includes(guesses[guesses.length - 1])) {
+        guessedLettersString += guesses[guesses.length - 1];
+    }
     lettersGuessedBox.textContent = guessedLettersString;
 }
 
@@ -143,7 +145,7 @@ function resetGame() {
     guessesRemaining = 12; // ... reset guesses remaining...
     numberRemainingGuessesBox.textContent = guessesRemaining; // ... print our reset guess count...
     guesses = []; // ... reset the guesses array...
-    writeGuessedCharacters(); // ... print our empty guesses array...
+    lettersGuessedBox.textContent = ""; // ... print our empty guesses array...
 
 }
 
@@ -151,7 +153,7 @@ document.onkeyup = function (event) {
     userInput = event.key;
     userInput = userInput.toUpperCase();
 
-    if (alphabet.indexOf(userInput !== -1) && guesses.indexOf(userInput) === -1) { // If the input is a letter, and hasn't already been guessed
+    if (alphabet.includes(userInput) && !guesses.includes(userInput)) { // If the input is a letter, and hasn't already been guessed
         guesses.push(userInput); // ... add the letter to our guesses array
         console.log(guesses);
 
@@ -168,6 +170,5 @@ document.onkeyup = function (event) {
 
     if (guessesRemaining === 0) { // If we've run out of guesses...
         resetGame(); // ... reset the game
-
     }
 }
